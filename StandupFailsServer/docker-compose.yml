@@ -1,0 +1,39 @@
+version: '3'
+
+networks:
+  standup_fails_app:
+    external: true
+
+services:
+  postgres:
+    container_name: standup_fails_db
+    image: postgres:9.6.0
+    volumes:
+      - standup-fails-api-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: ""
+      POSTGRES_DB: "standupfails"
+    networks:
+      - standup_fails_app
+
+  standupfailsapi:
+    container_name: standup_fails_api
+    image: standupfailsapi:latest
+    ports:
+      - "8880:8880"
+    environment:
+      DB_URL: jdbc:postgresql://standup_fails_db:5432/standupfails
+      DB_USER: "postgres"
+      DB_PASSWORD: ""
+      SECRET_KEY: 898748674728934843
+      JWT_SECRET: 898748674728934843
+    networks:
+      - standup_fails_app
+    depends_on:
+      - postgres
+
+volumes:
+  standup-fails-api-data:

@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"); // Main Font
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap'); // Logo Font
+@import 'variables';
+
+body {
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: $background;
+    color: $primary-color;
+}
+
+.text-logo {
+    font-family: Caveat, Helvetica, Arial, sans-serif;
+}
+
+.text-purple {
+    color: $purple;
+}
+
+.text-blue {
+    color: $blue;
+}
+
+.text-lg {
+    font-size: 36px;
+}
+
+.text-md {
+    font-size: 24px;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.text-medium {
+    font-weight: 400;
+}
+
+.text-light {
+    font-weight: 300;
+}
+
+.text-center {
+    text-align: center;
+}
