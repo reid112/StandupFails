@@ -25,11 +25,11 @@ services:
     ports:
       - "8880:8880"
     environment:
-      DB_URL: jdbc:postgresql://standup_fails_db:5432/standupfails
-      DB_USER: "postgres"
+      DB_URL: "
+      DB_USER: ""
       DB_PASSWORD: ""
-      SECRET_KEY: 898748674728934843
-      JWT_SECRET: 898748674728934843
+      SECRET_KEY: 123
+      JWT_SECRET: 123
     networks:
       - standup_fails_app
     depends_on:
