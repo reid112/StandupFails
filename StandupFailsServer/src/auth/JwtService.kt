@@ -8,7 +8,7 @@ import java.util.*
 
 class JwtService {
 
-    private val issuer = "BoulderTrackerApi"
+    private val issuer = "StandupFailsApi"
     private val jwtSecret = System.getenv("JWT_SECRET")
     private val algorithm = Algorithm.HMAC512(jwtSecret)
 
