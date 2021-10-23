@@ -3,7 +3,7 @@
         <div class="card"> 
             <div class="text-center">
                 <button 
-                    class="w-40 h-40 text-2xl bg-opacity-75 border-2 rounded-full shadow-lg bg-red hover:bg-opacity-100 active:bg-opacity-100"
+                    class="w-40 h-40 text-2xl font-extrabold text-white transition duration-300 border-2 border-black rounded-full shadow-lg bg-opacity-90 bg-red hover:bg-opacity-100 active:bg-opacity-100"
                     @click="showModal = true"
                 >
                     FAIL
