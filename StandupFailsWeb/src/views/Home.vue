@@ -15,7 +15,7 @@
       </n-card>
 
       <!-- TODO: Move this to its own component -->
-      <n-modal :show="showModal">
+      <n-modal v-model:show="showModal">
           <n-card style="width: 600px; text-align: center;" :bordered="false" size="huge">
               <n-result
                   status="500"
