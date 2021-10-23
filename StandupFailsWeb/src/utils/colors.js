@@ -1,6 +1,6 @@
 module.exports = {
     transparent: "#00000000",
-    background: "#f5f5f5",
+    background: "#d4d4d4",
     separator: "#ccc",
     black: "#000",
     white: "#fff",
