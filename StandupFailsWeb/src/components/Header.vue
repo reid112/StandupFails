@@ -1,10 +1,10 @@
 <template>
-    <div class="w-full sm:flex sm:flex-row sm:items-center sm:justify-between">
-        <div class="p-4">
-            <img class="mx-auto" src="standup-fails-logo.png" width="200" alt="Standup Fails" />
+    <div class="w-full bg-white shadow-md sm:flex sm:flex-row sm:items-center">
+        <div class="p-4 sm:w-1/3">
+            <img src="standup-fails-logo.png" width="200" alt="Standup Fails" />
         </div>
 
-        <div class="p-4 bg-opacity-25 sm:text-right bg-blue sm:bg-transparent">
+        <div class="p-4 text-center bg-opacity-25 sm:w-1/3 bg-blue sm:bg-transparent">
             <div>
                 <router-link class="router-link" :to="{ name: 'Home' }">Home</router-link>
                 <router-link class="router-link" :to="{ name: 'Leaderboard' }">Leaderboard</router-link>
@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .router-link {
-    @apply block w-full text-center font-bold hover:text-purple hover:underline sm:inline-block sm:w-auto text-lg pl-4;
+    @apply block w-full text-center font-bold hover:text-purple hover:underline sm:inline-block sm:w-auto text-lg sm:px-1 md:px-2;
 }
 
 .router-link-active {

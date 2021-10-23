@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen bg-background">
+    <Header />
     <div class="max-w-screen-lg mx-auto">
-      <Header />
       <div class="content">
         <n-message-provider>
           <router-view />
