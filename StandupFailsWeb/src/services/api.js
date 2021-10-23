@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default () => {
     let instance = axios.create({
-        baseURL: process.env.API_URL || "http://localhost:8880/",
+        baseURL: process.env.VUE_APP_API_URL,
     })
 
     // Set the AUTH token for any request
