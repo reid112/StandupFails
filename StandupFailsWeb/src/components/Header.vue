@@ -37,10 +37,10 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
-    padding: 10px;
+    height: 80px;
     border-bottom: 1px solid $separator;
     background: $white;
+    width: 100%;
 
     .title-container, .nav-container, .avatar-container {
         width: 33vw;
@@ -49,6 +49,7 @@ export default {
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        padding: 0 10px;
     }
 
     .title-container {
