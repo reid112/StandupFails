@@ -18,8 +18,8 @@
         </div>
 
         <n-modal v-model:show="showModal">
-            <div class="w-full">
-                <div class="max-w-screen-lg mx-auto text-center card">
+            <div class="shadow-none">
+                <div class="w-screen max-w-screen-md mx-auto text-center card">
                     <n-result
                         status="500"
                         size="huge"
