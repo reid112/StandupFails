@@ -8,14 +8,13 @@ services:
   postgres:
     container_name: standup_fails_db
     image: postgres:9.6.0
+    restart: always
     volumes:
-      - standup-fails-api-data:/var/lib/postgresql/data
+      - standup-fails-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: ""
-      POSTGRES_DB: "standupfails"
+      - "5431:5432"
+    env_file:
+      - .env
     networks:
       - standup_fails_app
 
@@ -24,16 +23,12 @@ services:
     image: standupfailsapi:latest
     ports:
       - "8880:8880"
-    environment:
-      DB_URL: "
-      DB_USER: ""
-      DB_PASSWORD: ""
-      SECRET_KEY: 123
-      JWT_SECRET: 123
+    env_file:
+      - .env
     networks:
       - standup_fails_app
     depends_on:
       - postgres
 
 volumes:
-  standup-fails-api-data:
+  standup-fails-data:

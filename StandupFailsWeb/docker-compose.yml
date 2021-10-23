@@ -1,0 +1,16 @@
+version: '3'
+
+networks:
+  standup_fails_app:
+    external: true
+
+services:
+  standupfailsweb:
+    container_name: standup_fails_web
+    image: standupfailsweb:latest
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    networks:
+      - standup_fails_app

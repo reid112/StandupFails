@@ -20,6 +20,16 @@ npm run build
 npm run lint
 ```
 
+#### Build Docker Image
+```
+docker build -t standupfailsweb .
+```
+
+#### Spin Up Container
+```
+docker-compose up
+```
+
 #### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
