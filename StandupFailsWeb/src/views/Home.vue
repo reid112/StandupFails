@@ -1,40 +1,44 @@
 <template>
-  <div class="home">
-      <n-card size="huge"> 
-          <div class="fail-button-container">
-              <n-button @click="showModal = true" class="fail-button text-lg" type="error">
-                  FAIL
-              </n-button>
-          </div>
+    <div>
+        <div class="card"> 
+            <div class="text-center">
+                <button 
+                    class="w-40 h-40 text-2xl bg-opacity-75 border-2 rounded-full shadow-lg bg-red hover:bg-opacity-100 active:bg-opacity-100"
+                    @click="showModal = true"
+                >
+                    FAIL
+                </button>
+            </div>
 
-          <n-divider/>
+            <n-divider/>
 
-          <p class="biggest-failure-title text-center">Biggest Failure</p>
-          <div class="text-center" v-if="isLoading"><n-spin size="large" /></div>
-          <p v-else class="biggest-failure-value text-center">{{ biggestFailure ? biggestFailure.displayName : "No fails yet, what?!" }}</p>
-      </n-card>
+            <p class="m-4 text-3xl font-bold text-center">King of Fails:</p>
+            <div class="text-center" v-if="isLoading"><n-spin size="large" /></div>
+            <p v-else class="text-xl text-center text-red">{{ biggestFailure ? biggestFailure.displayName : "---" }}</p>
+        </div>
 
-      <!-- TODO: Move this to its own component -->
-      <n-modal v-model:show="showModal">
-          <n-card style="width: 600px; text-align: center;" :bordered="false" size="huge">
-              <n-result
-                  status="500"
-                  size="huge"
-                  title="SHAME"
-                  description="Who failed this time?"
-              />
+        <n-modal v-model:show="showModal">
+            <div class="w-full">
+                <div class="max-w-screen-lg mx-auto text-center card">
+                    <n-result
+                        status="500"
+                        size="huge"
+                        title="SHAME"
+                        description="Who failed this time?"
+                    />
 
-              <n-space vertical>
-                  <n-select v-model:value="selectedUser" :options="users" />
-                  <n-input v-model:value="password" type="password" placeholder="Whats the super secret password??" />
-              </n-space>
+                    <n-space vertical class="text-left">
+                        <n-select v-model:value="selectedUser" :options="users" />
+                        <n-input v-model:value="password" type="password" placeholder="Whats the super secret password??" />
+                    </n-space>
 
-              <n-button color="#00A1A8" :loading="isLoading" :disabled="isLoading || !selectedUser || !password" @click="saveFailure" style="margin-top: 20px;">
-                  FAIL
-              </n-button>
-          </n-card>
-      </n-modal>
-  </div>
+                    <n-button color="#00A1A8" :loading="isLoading" :disabled="isLoading || !selectedUser || !password" @click="saveFailure" style="margin-top: 20px;">
+                        FAIL
+                    </n-button>
+                </div>
+            </div>
+        </n-modal>
+    </div>
 </template>
 
 <script>
@@ -117,30 +121,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-.home {
-    .fail-button-container {
-        text-align: center;
-
-        .fail-button {
-            height: 200px;
-            width: 200px;
-            margin: 20px auto;
-            border-radius: 200px;
-            border: 5px solid $black;
-        }
-    }
-
-    .biggest-failure-title {
-        margin: 0;
-        font-size: 24px;
-    }
-
-    .biggest-failure-value {
-        margin: 0;
-        font-size: 48px;
-        color: $red;
-    }
-}
-</style>

@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
-    <Header />
-    <div class="content">
-      <n-message-provider>
-        <router-view />
-      </n-message-provider>
+  <div class="h-screen bg-background">
+    <div class="max-w-screen-lg mx-auto">
+      <Header />
+      <div class="content">
+        <n-message-provider>
+          <router-view />
+        </n-message-provider>
+      </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -22,18 +24,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss">
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .content {
-    width: 60vw;
-    padding: 20px;
-    flex-grow: 1;
-  }
-}
-</style>
