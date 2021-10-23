@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .card {
+        @apply p-4 m-4 bg-white rounded-lg shadow-md;
+    }
+}
