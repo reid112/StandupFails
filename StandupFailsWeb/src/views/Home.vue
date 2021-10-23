@@ -24,9 +24,12 @@
                   description="Who failed this time?"
               />
 
-              <n-select v-model:value="selectedUser" :options="users" />
-              
-              <n-button color="#00A1A8" :loading="isLoading" :disabled="isLoading" @click="saveFailure" style="margin-top: 20px;">
+              <n-space vertical>
+                  <n-select v-model:value="selectedUser" :options="users" />
+                  <n-input v-model:value="password" type="password" placeholder="Whats the super secret password??" />
+              </n-space>
+
+              <n-button color="#00A1A8" :loading="isLoading" :disabled="isLoading || !selectedUser || !password" @click="saveFailure" style="margin-top: 20px;">
                   FAIL
               </n-button>
           </n-card>
@@ -41,14 +44,12 @@ import { useMessage } from "naive-ui"
 
 export default {
     name: "Home",
-    components: {
-
-    },
     setup () {
         const users = ref([])
         const selectedUser = ref(null)
         const biggestFailure = ref(null)
         const showModal = ref(false)
+        const password = ref(null)
         const isLoading = ref(true)
 
         const store = useStore()
@@ -79,6 +80,11 @@ export default {
         }
 
         function saveFailure() {
+            if (password.value !== process.env.VUE_APP_ADD_FAIL_PASSWORD) {
+                error("Nice try.  Get Gud!")
+                return
+            }
+
             isLoading.value = true
 
             let request = {
@@ -106,6 +112,7 @@ export default {
             biggestFailure: biggestFailure,
             isLoading: isLoading,
             saveFailure: saveFailure,
+            password: password,
         }
     },
 }
