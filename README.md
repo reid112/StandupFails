@@ -20,6 +20,7 @@ npm run build
 npm run lint
 ```
 
+### Production Release
 #### Build Docker Image
 ```
 docker build -t standupfailsweb .
