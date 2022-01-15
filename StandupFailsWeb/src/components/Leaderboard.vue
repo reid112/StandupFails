@@ -1,7 +1,5 @@
 <template>
     <div class="card">
-        <h1 class="mb-4 text-xl font-bold">Leaderboard</h1>
-
         <div class="text-center" v-if="isLoading">
             <n-spin :stroke="Colors.purple" class="text-center" size="large" />
         </div>
@@ -40,11 +38,7 @@ export default {
 
         store.dispatch("getFails").then((response) => {
             response.data.forEach(fail => {
-                if (fail.lastFailedDate) {
-                    fail.lastFailedDate = moment(fail.lastFaileDate).format("MMMM Do, YYYY")
-                } else {
-                    fail.lastFailedDate = "Never"
-                }
+                fail.lastFailedDate = moment(fail.lastFailedDate).format("MMMM Do, YYYY")
             })
             fails.value = response.data
 
