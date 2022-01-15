@@ -5,6 +5,7 @@ import ca.rjreid.models.db.User
 import ca.rjreid.models.response.FailResponse
 import ca.rjreid.models.response.GetFailsResponse
 import ca.rjreid.models.response.UserResponse
+import java.time.LocalDate
 
 interface Repository {
     suspend fun addUser(email: String, displayName: String, passwordHash: String): User?
@@ -12,6 +13,6 @@ interface Repository {
     suspend fun findUser(userId: Int): User?
     suspend fun findUserByEmail(email: String): User?
     suspend fun findUserWithMostFails(): User?
-    suspend fun addFail(userId: Int, date: String): Fail?
+    suspend fun addFail(userId: Int, date: LocalDate): Fail?
     suspend fun findFails(): List<GetFailsResponse?> // TODO: Refactor this to not use GetFailsResponse
 }

@@ -5,12 +5,16 @@ import ca.rjreid.models.response.AddFailResponse
 import ca.rjreid.repository.Repository
 import com.typesafe.config.ConfigFactory
 import io.ktor.application.*
+import io.ktor.application.application
 import io.ktor.config.*
 import io.ktor.http.*
 import io.ktor.locations.*
+import io.ktor.locations.post
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import java.time.LocalDate
+
 import java.util.*
 
 private const val FAIL = "v1/fail"
@@ -44,7 +48,7 @@ fun Route.fails(db: Repository) {
                 throw Exception("Invalid Password")
             }
 
-            val newFail = db.addFail(request.userId, Date().toString())
+            val newFail = db.addFail(request.userId, LocalDate.now())
 
             newFail?.id?.let {
                 val response = AddFailResponse(newFail.id)

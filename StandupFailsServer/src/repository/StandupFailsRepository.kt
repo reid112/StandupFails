@@ -9,6 +9,7 @@ import ca.rjreid.repository.tables.Users
 import io.ktor.application.*
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.statements.InsertStatement
+import java.time.LocalDate
 import java.util.*
 
 class StandupFailsRepository: Repository {
@@ -58,7 +59,7 @@ class StandupFailsRepository: Repository {
             .singleOrNull()
     }
 
-    override suspend fun addFail(userId: Int, date: String) : Fail? {
+    override suspend fun addFail(userId: Int, date: LocalDate) : Fail? {
         var statement : InsertStatement<Number>? = null
         dbQuery {
             statement = Fails.insert { fail ->
@@ -83,7 +84,7 @@ class StandupFailsRepository: Repository {
                     val count = it[Fails.id.count()]
                     val date = it[Fails.date.max()]
 
-                    list.add(GetFailsResponse(displayName, date ?: "Unknown", count))
+                    list.add(GetFailsResponse(displayName, date?.toString() ?: "Unknown", count.toInt()))
                 }
         }
 
@@ -112,7 +113,7 @@ class StandupFailsRepository: Repository {
         return Fail(
             id = row[Fails.id],
             userId = row[Fails.userId],
-            date = row[Fails.date]
+            date = row[Fails.date].toString()
         )
     }
     //endregion

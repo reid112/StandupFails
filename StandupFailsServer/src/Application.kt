@@ -64,7 +64,8 @@ fun Application.module(testing: Boolean = false) {
         allowNonSimpleContentTypes = true
         allowCredentials = true
         allowSameOrigin = true
-        host("*", listOf("http", "https"))
+        host("localhost:8080", listOf("http", "https"))
+        host("standupfails.ca", listOf("http", "https"))
     }
 
     routing {
