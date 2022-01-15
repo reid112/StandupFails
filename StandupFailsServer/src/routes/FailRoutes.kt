@@ -3,7 +3,9 @@ package ca.rjreid.routes
 import ca.rjreid.models.request.AddFailRequest
 import ca.rjreid.models.response.AddFailResponse
 import ca.rjreid.repository.Repository
+import com.typesafe.config.ConfigFactory
 import io.ktor.application.*
+import io.ktor.config.*
 import io.ktor.http.*
 import io.ktor.locations.*
 import io.ktor.request.*
@@ -12,6 +14,7 @@ import io.ktor.routing.*
 import java.util.*
 
 private const val FAIL = "v1/fail"
+private val appConfig = HoconApplicationConfig(ConfigFactory.load())
 
 @KtorExperimentalLocationsAPI
 @Location(FAIL)
@@ -35,6 +38,12 @@ fun Route.fails(db: Repository) {
     post<AddFailRoute> {
         try {
             val request = call.receive<AddFailRequest>()
+            val password = request.password
+
+            if (password != appConfig.property("passwords.addFail").getString()) {
+                throw Exception("Invalid Password")
+            }
+
             val newFail = db.addFail(request.userId, Date().toString())
 
             newFail?.id?.let {

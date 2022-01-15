@@ -48,10 +48,11 @@ class StandupFailsRepository: Repository {
 
     override suspend fun findUserWithMostFails(): User? = dbQuery {
         (Fails innerJoin Users)
-            .slice(Fails.id.count(), Users.userId, Users.displayName, Users.email, Users.passwordHash)
+            .slice(Fails.id.count(), Fails.date.max(), Users.userId, Users.displayName, Users.email, Users.passwordHash)
             .selectAll()
             .groupBy(Users.userId)
             .orderBy(Fails.id.count(), order = SortOrder.DESC)
+            .orderBy(Fails.date.max(), order = SortOrder.DESC)
             .limit(1)
             .map { rowToUser(it) }
             .singleOrNull()
@@ -73,15 +74,16 @@ class StandupFailsRepository: Repository {
         val list = mutableListOf<GetFailsResponse?>()
         dbQuery {
             (Fails innerJoin Users)
-                .slice(Fails.id.count(), Users.displayName)
+                .slice(Fails.id.count(), Fails.date.max(), Users.displayName)
                 .selectAll()
                 .groupBy(Users.displayName)
                 .orderBy(Fails.id.count(), order = SortOrder.DESC)
                 .forEach {
                     val displayName = it[Users.displayName]
                     val count = it[Fails.id.count()]
+                    val date = it[Fails.date.max()]
 
-                    list.add(GetFailsResponse(displayName, Date().toString(), count))
+                    list.add(GetFailsResponse(displayName, date ?: "Unknown", count))
                 }
         }
 
