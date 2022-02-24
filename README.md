@@ -1,3 +1,6 @@
+# Standup Fails
+Currently live at https://standupfails.ca.  This is sort of a joke project that I built over a weekend to play with KTOR with Exposed and Vue.js 3 with Tailwind CSS.
+
 ## Web
 
 ### Project setup
