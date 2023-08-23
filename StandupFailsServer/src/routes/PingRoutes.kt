@@ -17,6 +17,6 @@ class PingRoute
 @KtorExperimentalLocationsAPI
 fun Route.ping() {
     get<PingRoute> {
-        call.respond("${call.request.origin.remoteHost} | ${call.request.origin}")
+        call.respond("It worked!")
     }
 }
